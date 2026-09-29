@@ -1,6 +1,7 @@
 // بيانات المناسبة كلها قابلة للتعديل هنا.
 window.__INVITE__ = { config: {
   occasion: "عيد ميلاد",
+  shareImage: "assets/share.jpg",
   celebrant: "يوسف",
   host: "عائلة الحسيني",
   age: 10,

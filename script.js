@@ -11,7 +11,18 @@
   function fillContent() {
     const person = config.celebrant || "";
     const host = config.host || "";
-    document.title = `دعوة عيد ميلاد ${person}`;
+    const title = `دعوة ${config.occasion || "مناسبة"} ${person}`.trim();
+    const description = [config.dateText, config.venueName].filter(Boolean).join(" • ");
+    document.title = title;
+    document.querySelector('meta[name="description"]')?.setAttribute("content", description);
+    document.querySelector('meta[property="og:title"]')?.setAttribute("content", title);
+    document.querySelector('meta[property="og:description"]')?.setAttribute("content", description);
+    if (config.shareImage) {
+      document.querySelector('meta[property="og:image"]')?.setAttribute("content", new URL(config.shareImage, location.href).href);
+      document.querySelector('meta[name="twitter:image"]')?.setAttribute("content", new URL(config.shareImage, location.href).href);
+    }
+    setText("coverLabel", `دعوة ${config.occasion || "مناسبة"}`);
+    setText("heroKicker", `حفل ${config.occasion || "مناسبة"}`);
     setText("coverMono", `عيد ميلاد ${person}`);
     setText("celebrantName", person);
     setText("heroGreet", `عيد ميلاد ${person}`);
